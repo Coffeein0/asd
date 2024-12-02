@@ -18,6 +18,9 @@ class Graph:
         """Добавляет ребро от вершины u к v с весом weight."""
         self.graph[u][v] = weight
 
+        #добавить, если ориентированный
+        #self.graph[v][u] = weight
+
     def print_graph(self) -> None:
         """Выводит матрицу смежности графа в терминал."""
         print("Матрица смежности графа:")
@@ -42,9 +45,9 @@ class Graph:
 
     def dijkstra(self, start: int) -> List[float]:
         """Алгоритм Дейкстры для поиска кратчайших путей от вершины start."""
-        dist = [math.inf] * self.num_vertices
+        dist: List[float] = [math.inf] * self.num_vertices
         dist[start] = 0
-        pq = [(0, start)]  # (расстояние, вершина)
+        pq: List[tuple]  = [(0, start)]  # (расстояние, вершина)
 
         while pq:
             current_dist, u = heapq.heappop(pq)
@@ -94,11 +97,11 @@ def run_tests() -> None:
     g.add_edge(1, 4, -4)
     g.add_edge(2, 3, -3)
     g.add_edge(2, 4, 9)
-    g.add_edge(3, 1, 5)
-    g.add_edge(4, 0, 2)
-    g.add_edge(4, 3, 7)
+    g.add_edge(3, 1, 5) #убрать, если ориентрованный
+    g.add_edge(4, 0, 2) #убрать, если ориентрованный
+    g.add_edge(4, 3, 7) #убрать, если ориентрованный
 
-    # Тест 2: Вывод графа
+    # Тест 2: Вывод графа 
     print("\nГраф:")
     g.print_graph()
 
